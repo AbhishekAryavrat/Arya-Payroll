@@ -1,0 +1,22 @@
+
+<div class="card card-user">
+        <div class="card-body">
+        <div class="card-header">
+          <h1 class="card-title">Register</h1>
+        </div>
+      <form class="form-horizontal" role="form" [formGroup]="form" (ngSubmit)="submitForm()" >
+        <div class="form-group">
+          <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+          <div class="col-sm-4">
+            <input class="form-control" type="email" id="inputEmail" value="" placeholder="Email" required formControlName="email">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success" routerLink='./login'>Register</button>
+          </div>
+        </div>
+      </form>
+      </div>
+      </div>
+      

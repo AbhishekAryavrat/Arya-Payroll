@@ -1,32 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './themes/header/header.component';
-import { SidebarComponent } from './themes/sidebar/sidebar.component';
-import { PagesComponent } from './pages/pages.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { FooterComponent } from './themes/footer/footer.component';
-
-
+import { ApiService } from './api.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    SidebarComponent,
-    PagesComponent,
-    DashboardComponent,
-    FooterComponent,
     
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [ ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
