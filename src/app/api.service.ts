@@ -11,10 +11,19 @@ export class ApiService {
   endpoint:string ="http://localhost:3002";
   headers = new HttpHeaders().set('Contant-Type', 'application/x-www-form-urlencoded');
 
+
   constructor(private http:HttpClient) { }
 
-    submitData(data:Auth): Observable<any>{
+    submitSignup(data:Auth): Observable<any>{
+      data.redirectUrl = "https://www.mailinator.com";
       let apiURL = `${this.endpoint}/user/signup-via-email`;
+      return this.http.post(apiURL, data).pipe(
+        catchError(this.errorMgmt)
+      )
+    }
+
+    submitLogin(data:Auth): Observable<any>{
+      let apiURL = `${this.endpoint}/users/login`;
       return this.http.post(apiURL, data).pipe(
         catchError(this.errorMgmt)
       )

@@ -1,7 +1,8 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 
 
 
@@ -12,7 +13,10 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   
-  form:FormGroup;
+  registerForm:FormGroup;
+  signupFlag : boolean = true;
+  errMessage : string;
+  
 
   ngOnInit() {
     this.submitData();
@@ -20,23 +24,36 @@ export class RegisterComponent implements OnInit {
 
   constructor(private api: ApiService, public fb: FormBuilder, private ngZone:NgZone, private router:Router){}
   
-    // this.form = new FormGroup({
-    //   email: new FormControl()
-    // });
     submitData(){
-      this.form = this.fb.group({
-        email:[''],
+      this.registerForm = this.fb.group({
+        email:new FormControl (null, Validators.compose([
+          Validators.required,
+          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+         
+        ])),
       })
     }
 
-    submitForm(){
-      console.log(this.form.value);
-      this.api.submitData(this.form.value).subscribe((res)=>{
-        this.ngZone.run(()=>this.router.navigateByUrl('./login'))
+    register(){
+      //console.log(this.registerForm.value);
+      this.api.submitSignup(this.registerForm.value).subscribe((data)=>{
+        if(data.status == "error"){
+            this.signupFlag = false;
+            this.errMessage = data.message;
+        }
+        else if(data.status == "success")
+        {
+          this.ngZone.run(()=>this.router.navigateByUrl('/users/login'));
+        }
       });
+      
     }
 
-
+    validationErrorMessage = {
+      'email': [
+        { type: 'required', message: 'Email is required' },
+        { type: 'pattern', message: 'Enter a valid email' }
+      ],
    
-
+    }
 }

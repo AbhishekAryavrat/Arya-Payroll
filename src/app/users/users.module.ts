@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -14,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     UsersRoutingModule,
     ReactiveFormsModule,
+    RouterModule,
     
   ]
 })

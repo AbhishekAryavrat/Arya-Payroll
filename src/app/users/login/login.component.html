@@ -1,26 +1,55 @@
-<!-- <div class="card card-user">
+<div class="card card-user">
   <div class="card-body">
-  <div class="card-header">
-    <h1 class="card-title">Login</h1>
-  </div>
-<form class="form-horizontal" role="form">
-  <div class="form-group">
-    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-    <div class="col-sm-4">
-      <input class="form-control" id="inputEmail" placeholder="Email" required>
+    <div class="card-header">
+      <h1 class="card-title">Login</h1>
     </div>
+    <form class="form-horizontal" role="form" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+      <div class="form-group">
+        <label class="col-sm-6 control-label"><b>Email:</b></label>
+        <div class="col-sm-offset-2">
+          <input class="form-control" type="email" id="inputEmail" placeholder="Enter Your Email"
+            formControlName="email">
+            <!-- Check for email validation -->
+          <div *ngFor="let validation of validationErrorMessage.email">
+            <div
+              *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)"
+              class="alert alert-danger">
+              {{ validation.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-6 control-label"><b>Password:</b></label>
+        <div class="col-sm-offset-2">
+          <input class="form-control" type="password" id="inputPassword" placeholder="Enter Your Password"
+            formControlName="password">
+            <!-- Check for password validation -->
+          <div *ngFor="let validation of validationErrorMessage.password">
+            <div
+              *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)"
+              class="alert alert-danger">
+              {{ validation.message }}
+            </div>
+          </div>
+          <div *ngIf="!flag">
+            {{ errorMessageServer }}
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-success"
+            [disabled]="loginForm.pristine || loginForm.invalid">Login</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <section>Already have an account? &nbsp;<a class="text-link" routerLink="../register"
+              routerLinkAcitve="active">REGISTER</a></section>
+        </div>
+      </div>
+    </form>
   </div>
-  <div class="form-group">
-    <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-4">
-      <input class="form-control" id="inputPassword" placeholder="Password" required>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-success">Login</button>
-    </div>
-  </div>
-</form>
 </div>
-</div> -->
