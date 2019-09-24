@@ -1,0 +1,65 @@
+
+<div class="card">
+    <div class="card-header" style="text-align: center">
+        <h2>Company List</h2>
+        <a class="btn btn-primary" routerLink="/pages/company/add-company" style="float: right;"><i
+                class="fa fa-plus-square"></i>&nbsp; Add Company</a>
+    </div>
+
+    <div class="panel-body">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let list of individualCompanyData">
+                <strong><b (click)="showData(list._id)" style="cursor: pointer">{{ list.name }}</b></strong>
+                <div style="float: right;">
+                    <i class="dropdown-toggle" (click)="showData(list._id)"></i>
+                </div>
+                <div class="card" style="background-color:ghostwhite" [hidden]="showCard[list._id]">
+                    <table class="table" style="margin: auto">
+                        <tr>
+                            <th>Name:</th>
+                            <td>{{ list.name }}</td>
+                            <th>Address:</th>
+                            <td>{{ list.address}}</td>
+                        </tr>
+                        <tr>
+                            <th>Domicile:</th>
+                            <td>{{ list.domicile}}</td>
+                            <th>Phone Number:</th>
+                            <td>{{ list.phone}}</td>
+                        </tr>
+                        <tr>
+                            <th>Fax Number:</th>
+                            <td>{{ list.fax}}</td>
+                            <th>Email Address:</th>
+                            <td>{{ list.email}}</td>
+                        </tr>
+                        <tr>
+                            <th>BCC Address for all outgoing mails:</th>
+                            <td>{{ list.outGoingMails}}</td>
+                            <th>Official Company Number:</th>
+                            <td>{{ list.officialNumber}}</td>
+                        </tr>
+                        <tr>
+                            <th>GSTNo:</th>
+                            <td>{{ list.gstNumber}}</td>
+                            <th>Home Currency:</th>
+                            <td>{{ list.currency}}</td>
+                        </tr>
+                    </table>
+                    <div>
+                            <a routerLink="/pages/company/update-company-list/{{ list._id }}" style="float: right"
+                            class="btn btn-primary">
+                            <i class="fa fa-pencil-square-o"></i>&nbsp;
+                            Update
+                        </a>
+                        <button style="float: right;" class="btn btn-danger" type="button"
+                            (click)="showConfirmationMessage(list._id)">
+                            <i class="fa fa-trash"></i>&nbsp; Delete
+                        </button>
+                        
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

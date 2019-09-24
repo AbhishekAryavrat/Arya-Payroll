@@ -6,11 +6,14 @@ import { UsersComponent } from './users.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { GeneratePasswordComponent } from './generate-password/generate-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, UsersComponent, RegisterComponent],
+  declarations: [LoginComponent, UsersComponent, RegisterComponent, GeneratePasswordComponent, ForgotPasswordComponent, ResetPasswordComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,

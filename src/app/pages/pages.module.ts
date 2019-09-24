@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
-import { PagesComponent } from './pages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../themes/header/header.component';
 import { SidebarComponent } from '../themes/sidebar/sidebar.component';
 import { FooterComponent } from '../themes/footer/footer.component';
-import { RouterModule } from '@angular/router';
-
+import { PagesComponent } from './pages.component';
 
 
 @NgModule({
-  declarations: [PagesComponent, DashboardComponent, HeaderComponent, SidebarComponent, FooterComponent],
+  declarations: [HeaderComponent,SidebarComponent,FooterComponent,PagesComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class PagesModule { }

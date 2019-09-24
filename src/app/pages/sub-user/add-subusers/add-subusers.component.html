@@ -1,0 +1,75 @@
+<div class="card card-user">
+    <div class="card-header">
+        <h2 class="card-title">Sub-Users Details</h2>
+        <a routerLink="../show-subusers-list" class="btn btn-primary btn-circle" style="float: right;"><i
+                class="fa  fa-arrow-right"></i></a>
+    </div>
+
+    <div class="card-body">
+        <div class="col-sm-offset-2">
+            <p class="alert alert-danger" *ngIf="errorMsg">
+                <strong>{{ errMsg }}</strong>
+            </p>
+        </div>
+
+        <div class="col-sm-offset-2">
+            <p class="alert alert-success" *ngIf="successMessage">
+                <strong>{{ successMsg }}</strong>
+            </p>
+        </div>
+
+        <form class="form-horizontal" role="form" [formGroup]="subUserForm" (ngSubmit)="subUserFormData()" novalidate>
+            <div class="form-group">
+                <label class="col-sm-6 control-label"><b>Full Name:</b></label>
+                <div class="col-sm-offset-2">
+                    <input class="form-control" type="text" id="inputName" placeholder="Enter Full Name"
+                        formControlName="name" required>
+                    <div *ngFor="let validation of validationMessage.name">
+                        <div class="alert alert-danger"
+                            *ngIf="subUserForm.get('name').hasError(validation.type) && (subUserForm.get('name').dirty || subUserForm.get('name').touched)"
+                            class="alert alert-danger">
+                            {{ validation.message }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-6 control-label"><b>Contact Number:</b></label>
+                <div class="col-sm-offset-2">
+                    <input class="form-control" type="text" id="inputPhone" placeholder="Enter Phone Number"
+                        formControlName="phone">
+                    <div *ngFor="let validation of validationMessage.phone">
+                        <div class="alert alert-danger"
+                            *ngIf="subUserForm.get('phone').hasError(validation.type) && (subUserForm.get('phone').dirty || subUserForm.get('phone').touched)"
+                            class="alert alert-danger">
+                            {{ validation.message }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-6 control-label"><b>Email:</b></label>
+                <div class="col-sm-offset-2">
+                    <input class="form-control" type="email" id="inputEmail" placeholder="Enter Email "
+                        formControlName="email" required>
+                    <div *ngFor="let validation of validationMessage.email">
+                        <div class="alert alert-danger"
+                            *ngIf="subUserForm.get('email').hasError(validation.type) && (subUserForm.get('email').dirty || subUserForm.get('email').touched)"
+                            class="alert alert-danger">
+                            {{ validation.message }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-success">Add Subuser</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

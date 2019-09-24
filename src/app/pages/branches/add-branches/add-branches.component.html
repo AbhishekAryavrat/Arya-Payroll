@@ -1,0 +1,161 @@
+<div class="card card-user">    
+    <div class="card-header">
+      <h2 class="card-title" #target>Branch Details</h2>
+      <a routerLink="../show-branches" class="btn btn-primary btn-circle"  style="float: right;" ><i class="fa  fa-arrow-right"></i></a>
+    </div>
+
+    <div class="card-body">
+        <div class="col-sm-offset-2">
+          <p class="alert alert-danger" *ngIf="errorMsg">
+            <strong>{{ errMsg }}</strong>
+          </p>
+        </div>
+    
+        <div class="col-sm-offset-2">
+          <p class="alert alert-success" *ngIf="successMessage">
+            <strong>{{ successMsg }}</strong>
+          </p>
+        </div>
+    
+        <form class="form-horizontal" role="form" [formGroup]="branchForm" (ngSubmit)="branchFormData()" novalidate>
+          <div class="form-group">
+            <label class="col-sm-6 control-label"><b>Name (to appear on reports):&nbsp;<span style="color: darkred">*</span></b></label>
+            <div class="col-sm-offset-2">
+              <input class="form-control" type="text" id="inputName" placeholder="Enter Branch Name" formControlName="name"
+                >
+              <div *ngFor="let validation of validationMessage.name">
+                <div class="alert alert-danger"
+                  *ngIf="branchForm.get('name').hasError(validation.type) && (branchForm.get('name').dirty || branchForm.get('name').touched)"
+                  class="alert alert-danger">
+                  {{ validation.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+    
+    
+          <div class="form-group">
+            <label class="col-sm-6 control-label"><b>Address:&nbsp;<span style="color: darkred">*</span></b></label>
+            <div class="col-sm-offset-2">
+              <textarea class="form-control" id="inputAddress" placeholder="Address" formControlName="address"
+                ></textarea>
+              <div *ngFor="let validation of validationMessage.address">
+                <div class="alert alert-danger"
+                  *ngIf="branchForm.get('address').hasError(validation.type) && (branchForm.get('address').dirty || branchForm.get('address').touched)"
+                  class="alert alert-danger">
+                  {{ validation.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <label class="col-sm-6 control-label"><b>Phone Number:</b></label>
+            <div class="col-sm-offset-2">
+              <input class="form-control" type="text" id="inputPhone" placeholder="Enter Phone Number"
+                formControlName="phone">
+              <div *ngFor="let validation of validationMessage.phone">
+                <div class="alert alert-danger"
+                  *ngIf="branchForm.get('phone').hasError(validation.type) && (branchForm.get('phone').dirty || branchForm.get('phone').touched)"
+                  class="alert alert-danger">
+                  {{ validation.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <label class="col-sm-6 control-label"><b>Fax Number:</b></label>
+            <div class="col-sm-offset-2">
+              <input class="form-control" type="text" id="inputFax" placeholder="Enter Fax Number:" formControlName="fax">
+              <div *ngFor="let validation of validationMessage.fax">
+                <div class="alert alert-danger"
+                  *ngIf="branchForm.get('fax').hasError(validation.type) && (branchForm.get('fax').dirty || branchForm.get('fax').touched)"
+                  class="alert alert-danger">
+                  {{ validation.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+    
+    
+          <div class="form-group">
+            <label class="col-sm-6 control-label"><b>Email Address:&nbsp;<span style="color: darkred">*</span></b></label>
+            <div class="col-sm-offset-2">
+              <input class="form-control" type="email" id="inputEmail" placeholder="Enter Email " formControlName="email"
+                >
+              <div *ngFor="let validation of validationMessage.email">
+                <div class="alert alert-danger"
+                  *ngIf="branchForm.get('email').hasError(validation.type) && (branchForm.get('email').dirty || branchForm.get('email').touched)"
+                  class="alert alert-danger">
+                  {{ validation.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+       
+    
+    
+          <div class="form-group">
+            <label class="col-sm-6 control-label"><b>BCC Address for all outgoing mails:</b></label>
+            <div class="col-sm-offset-2">
+              <input class="form-control" type="email" id="inputBcc" placeholder="Enter BCC Address"
+                formControlName="outGoingMails">
+              <div *ngFor="let validation of validationMessage.outGoingMails">
+                <div class="alert alert-danger"
+                  *ngIf="branchForm.get('outGoingMails').hasError(validation.type) && (branchForm.get('outGoingMails').dirty || branchForm.get('outGoingMails').touched)"
+                  class="alert alert-danger">
+                  {{ validation.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <label class="col-sm-6 control-label"><b>Official Branch Number:&nbsp;<span style="color: darkred">*</span></b></label>
+            <div class="col-sm-offset-2">
+              <input class="form-control" type="text" id="inputCompanyNo" placeholder="Enter Official Branch Number"
+                formControlName="officialNumber" >
+              <div *ngFor="let validation of validationMessage.officialNumber">
+                <div class="alert alert-danger"
+                  *ngIf="branchForm.get('officialNumber').hasError(validation.type) && (branchForm.get('officialNumber').dirty || branchForm.get('officialNumber').touched)"
+                  class="alert alert-danger">
+                  {{ validation.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+    
+    
+          <div class="form-group">
+            <label class="col-sm-6 control-label"><b>GSTNo:</b></label>
+            <div class="col-sm-offset-2">
+              <input class="form-control" type="text" id="inputGstno." placeholder="Enter GSTNo"
+                formControlName="gstNumber">
+              <div *ngFor="let validation of validationMessage.gstNumber">
+                <div class="alert alert-danger"
+                  *ngIf="branchForm.get('gstNumber').hasError(validation.type) && (branchForm.get('gstNumber').dirty || branchForm.get('gstNumber').touched)"
+                  class="alert alert-danger">
+                  {{ validation.message }}
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <label class="col-sm-6 control-label"><b>Home Currency:</b></label>
+            <select class="dropdown dropdown-toggle form-control" Name="HomeCurrency" formControlName="currency">
+              <option class="dropdown-item"  selected disabled>Choose Home Currency</option>
+              <option [ngValue]="homeCurrency" *ngFor="let homeCurrency of currency"> {{ homeCurrency }}</option>
+            </select>
+          </div>
+    
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-success" [disabled]="branchForm.invalid" (click)="scroll(target)">Add Branches</button>
+            </div>
+          </div>
+        </form>
+        </div>
+    </div>
+    

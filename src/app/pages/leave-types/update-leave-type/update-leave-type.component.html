@@ -1,0 +1,58 @@
+<div class="card card-user">
+    <div class="card-header">
+       <h2 class="card-title text-center">Update Leave Type</h2>
+       <button type="button" class="btn btn-primary btn-circle" routerLink="../../list-leave-types"  style="float: right;" ><i class="fa  fa-arrow-right"></i></button>
+    </div>
+    <div class="card-body">
+       <div class="col-sm-offset-2">
+          <p class="alert alert-danger" *ngIf="errorMsg">
+             <strong>{{ errMsg }}</strong>
+          </p>
+       </div>
+       <div class="col-sm-offset-2">
+          <p class="alert alert-success" *ngIf="successMessage">
+             <strong>{{ successMsg }}</strong>
+          </p>
+       </div>
+       <form class="form-horizontal" role="form" [formGroup]="leaveForm" (ngSubmit)="updateLeaveFormData()" *ngFor=" let leave of leaveData" novalidate>
+       <div class="form-group" >
+          <label class="col-sm-6 control-label"><b>Leave Type Name:</b></label>
+          <div class="col-sm-offset-2">
+             <input class="form-control" type="text" id="inputName" value="{{ leave.leaveTypeName}}" formControlName="leaveTypeName"
+                required>
+             <div *ngFor="let validation of validationMessage.leaveTypeName">
+                <div class="alert alert-danger"
+                   *ngIf="leaveForm.get('leaveTypeName').hasError(validation.type) && (leaveForm.get('leaveTypeName').dirty || leaveForm.get('leaveTypeName').touched)"
+                   class="alert alert-danger">
+                   {{ validation.message }}
+                </div>
+             </div>
+          </div>
+       </div>
+  
+       <div class="form-group">
+        <label class="col-sm-6 control-label"><b>Leave Type Code:</b></label>
+        <div class="col-sm-offset-2">
+           <input class="form-control" type="text" id="inputName" value="{{ leave.leaveTypeCode}}" formControlName="leaveTypeCode"
+              required>
+           <div *ngFor="let validation of validationMessage.leaveTypeCode">
+              <div class="alert alert-danger"
+                 *ngIf="leaveForm.get('leaveTypeCode').hasError(validation.type) && (leaveForm.get('leaveTypeCode').dirty || leaveForm.get('leaveTypeCode').touched)"
+                 class="alert alert-danger">
+                 {{ validation.message }}
+              </div>
+           </div>
+        </div>
+     </div>
+      
+     <div class="form-group">
+      <label class="control-label"><b>Is Paid:</b></label> <input type="checkbox" value="{{ leave.isPaid }}" formControlName="isPaid">
+      </div>
+       <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+             <button type="submit" class="btn btn-success" >Update</button>
+          </div>
+       </div>
+       </form>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="card-header" style="text-align: center">
+        <h2>Leave Types</h2>
+        <button class="btn btn-primary" type="button" routerLink="/pages/leave-types/add-leave-types"
+            style="float: right;"><i class="fa fa-plus-square"></i>&nbsp; Add Leave Type</button>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let list of leaveListData">
+                <strong><b (click)="showData(list._id)" style="cursor: pointer"> {{list.leaveTypeName}}</b></strong>
+                <div style="float: right;">
+                    <i class="dropdown-toggle" style="cursor: pointer" (click)="showData(list._id)"></i>
+                </div>
+                <div class="card" style="background-color:ghostwhite" [hidden]="showCard[list._id]">
+                    <table class="table" style="margin: auto">
+                        <tr>
+                            <th>Name:</th>
+                            <th>Code:</th>
+                        </tr>
+                        <tr>
+                            <td>{{ list.leaveTypeName}}</td>
+                            <td>{{ list.leaveTypeCode}}</td>
+                        </tr>
+                    </table>
+                    <div>
+                        <a routerLink="/pages/leave-types/update-leave-type/{{list._id}}"
+                            style="float: right" class="btn btn-primary">
+                            <i class="fa fa-pencil-square-o"></i>&nbsp;
+                            update
+                        </a>
+                        <button style="float: right;" class="btn btn-danger" type="button"
+                            (click)="showConfirmationMessage(list._id)">
+                            <i class="fa fa-trash"></i>&nbsp; Delete
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

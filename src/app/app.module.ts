@@ -4,14 +4,13 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ApiService } from './api.service';
-//import { RouterModule } from '@angular/router';
-
+import { ApiService } from './services/api.service';
+import { AuthGuard } from './authGuard/auth.guard';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -19,9 +18,9 @@ import { ApiService } from './api.service';
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
-   
+    RouterModule,
   ],
-  providers: [ ApiService],
+  providers: [ApiService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,20 +3,32 @@
     <div class="card-header">
       <h1 class="card-title">Login</h1>
     </div>
+
+    <div class="col-sm-offset-2">
+      <p class="alert alert-danger" *ngIf="!flag">
+        <strong>{{ errorMessageServer }}</strong>
+      </p>
+    </div>
+
+    <div class="col-sm-offset-2">
+      <p class="alert alert-success" *ngIf="loginFlag">
+        <strong>{{ successMessage }}</strong>
+      </p>
+    </div>
     <form class="form-horizontal" role="form" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
       <div class="form-group">
         <label class="col-sm-6 control-label"><b>Email:</b></label>
         <div class="col-sm-offset-2">
           <input class="form-control" type="email" id="inputEmail" placeholder="Enter Your Email"
             formControlName="email">
-            <!-- Check for email validation -->
           <div *ngFor="let validation of validationErrorMessage.email">
-            <div
+            <div class="alert alert-danger"
               *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)"
               class="alert alert-danger">
               {{ validation.message }}
             </div>
           </div>
+
         </div>
       </div>
       <div class="form-group">
@@ -24,7 +36,8 @@
         <div class="col-sm-offset-2">
           <input class="form-control" type="password" id="inputPassword" placeholder="Enter Your Password"
             formControlName="password">
-            <!-- Check for password validation -->
+
+          <!-- Check for password validation -->
           <div *ngFor="let validation of validationErrorMessage.password">
             <div
               *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)"
@@ -32,15 +45,14 @@
               {{ validation.message }}
             </div>
           </div>
-          <div *ngIf="!flag">
-            {{ errorMessageServer }}
-          </div>
+          <a class="text-link" id="forgot" routerLink="../forgot-password"
+            routerLinkActive="active">Forgot-Password?</a>
         </div>
+
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-success"
-            [disabled]="loginForm.pristine || loginForm.invalid">Login</button>
+          <button type="submit" class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
         </div>
       </div>
 

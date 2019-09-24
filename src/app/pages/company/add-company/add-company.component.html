@@ -1,0 +1,177 @@
+<div class="card card-user">
+  <div class="card-header">
+    <h2 class="card-title" #target>Company Details</h2>
+    <a routerLink="/pages/dashboard/company-list" class="btn btn-primary btn-circle" style="float: right;"><i
+        class="fa  fa-arrow-right"></i></a>
+  </div>
+
+  <div class="card-body" >
+    <div class="col-sm-offset-2" >
+      <p class="alert alert-danger" *ngIf="errorMsg">
+        <strong>{{ errMsg }}</strong>
+      </p>
+    </div>
+
+    <div class="col-sm-offset-2">
+      <p class="alert alert-success" *ngIf="successMessage"  #target>
+        <strong>{{ successMsg }}</strong>
+      </p>
+    </div>
+
+    <form class="form-horizontal" role="form" [formGroup]="companyForm" (ngSubmit)="companyFormData()" novalidate>
+      <div class="form-group">
+        <label class="col-sm-6 control-label"><b>Name (to appear on reports):&nbsp;<span style="color: darkred">*</span></b></label>
+        <div class="col-sm-offset-2">
+          <input class="form-control" type="text" id="inputName" placeholder="Enter Company Name" formControlName="name"
+            required>
+          <div *ngFor="let validation of validationMessage.name">
+            <div class="alert alert-danger"
+              *ngIf="companyForm.get('name').hasError(validation.type) && (companyForm.get('name').dirty || companyForm.get('name').touched)"
+              class="alert alert-danger">
+              {{ validation.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-sm-6 control-label"><b>Address:&nbsp;<span style="color: darkred">*</span></b></label>
+        <div class="col-sm-offset-2">
+          <textarea class="form-control" id="inputAddress" placeholder="Address" formControlName="address"
+            required></textarea>
+          <div *ngFor="let validation of validationMessage.address">
+            <div class="alert alert-danger"
+              *ngIf="companyForm.get('address').hasError(validation.type) && (companyForm.get('address').dirty || companyForm.get('address').touched)"
+              class="alert alert-danger">
+              {{ validation.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-sm-6 control-label"><b>Domicile:</b></label>
+        <div class="col-sm-offset-2">
+          <input class="form-control" type="text" id="inputDomiclie" placeholder="Enter Domicile"
+            formControlName="domicile">
+          <div *ngFor="let validation of validationMessage.domicile">
+            <div class="alert alert-danger"
+              *ngIf="companyForm.get('domicile').hasError(validation.type) && (companyForm.get('domicile').dirty || companyForm.get('domicile').touched)"
+              class="alert alert-danger">
+              {{ validation.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-6 control-label"><b>Phone Number:&nbsp;<span style="color: darkred">*</span></b></label>
+        <div class="col-sm-offset-2">
+          <input class="form-control" type="text" id="inputPhone" placeholder="Enter Phone Number"
+            formControlName="phone">
+          <div *ngFor="let validation of validationMessage.phone">
+            <div class="alert alert-danger"
+              *ngIf="companyForm.get('phone').hasError(validation.type) && (companyForm.get('phone').dirty || companyForm.get('phone').touched)"
+              class="alert alert-danger">
+              {{ validation.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-6 control-label"><b>Fax Number:</b></label>
+        <div class="col-sm-offset-2">
+          <input class="form-control" type="text" id="inputFax" placeholder="Enter Fax Number:" formControlName="fax">
+          <div *ngFor="let validation of validationMessage.fax">
+            <div class="alert alert-danger"
+              *ngIf="companyForm.get('fax').hasError(validation.type) && (companyForm.get('fax').dirty || companyForm.get('fax').touched)"
+              class="alert alert-danger">
+              {{ validation.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-sm-6 control-label"><b>Email Address:&nbsp;<span style="color: darkred">*</span></b></label>
+        <div class="col-sm-offset-2">
+          <input class="form-control" type="email" id="inputEmail" placeholder="Enter Email " formControlName="email"
+            required>
+          <div *ngFor="let validation of validationMessage.email">
+            <div class="alert alert-danger"
+              *ngIf="companyForm.get('email').hasError(validation.type) && (companyForm.get('email').dirty || companyForm.get('email').touched)"
+              class="alert alert-danger">
+              {{ validation.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label class="col-sm-6 control-label"><b>BCC Address for all outgoing mails:</b></label>
+        <div class="col-sm-offset-2">
+          <input class="form-control" type="email" id="inputBcc" placeholder="Enter BCC Address"
+            formControlName="outGoingMails">
+          <div *ngFor="let validation of validationMessage.outGoingMails">
+            <div class="alert alert-danger"
+              *ngIf="companyForm.get('outGoingMails').hasError(validation.type) && (companyForm.get('outGoingMails').dirty || companyForm.get('outGoingMails').touched)"
+              class="alert alert-danger">
+              {{ validation.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-6 control-label"><b>Official Company Number:&nbsp;<span style="color: darkred">*</span></b></label>
+        <div class="col-sm-offset-2">
+          <input class="form-control" type="text" id="inputCompanyNo" placeholder="Enter Official Company Number"
+            formControlName="officialNumber" required>
+          <div *ngFor="let validation of validationMessage.officialNumber">
+            <div class="alert alert-danger"
+              *ngIf="companyForm.get('officialNumber').hasError(validation.type) && (companyForm.get('officialNumber').dirty || companyForm.get('officialNumber').touched)"
+              class="alert alert-danger">
+              {{ validation.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-sm-6 control-label"><b>GST No:</b></label>
+        <div class="col-sm-offset-2">
+          <input class="form-control" type="text" id="inputGstno." placeholder="Enter GSTNo"
+            formControlName="gstNumber">
+          <div *ngFor="let validation of validationMessage.gstNumber">
+            <div class="alert alert-danger"
+              *ngIf="companyForm.get('gstNumber').hasError(validation.type) && (companyForm.get('gstNumber').dirty || companyForm.get('gstNumber').touched)"
+              class="alert alert-danger">
+              {{ validation.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-6 control-label"><b>Home Currency:</b></label>
+        <select class="dropdown dropdown-toggle form-control" Name="HomeCurrency" formControlName="currency">
+          <option class="dropdown-item" selected disabled>Choose Home Currency</option>
+          <option [ngValue]="homeCurrency" *ngFor="let homeCurrency of currency"> {{ homeCurrency }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-success" [disabled]="companyForm.invalid" (click)="scroll(target)">Add Company</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
